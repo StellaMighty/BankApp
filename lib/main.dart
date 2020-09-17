@@ -46,8 +46,8 @@ class WelcomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: CircleAvatar(
-                  // backgroundImage: AssetsImage("assets/chi.jpg"),
-                  ),
+                backgroundImage: AssetImage("assets/chi.jpg"),
+              ),
             )
           ],
         ),
@@ -226,101 +226,104 @@ class WelcomePage extends StatelessWidget {
                     ]),
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    width: 100,
-                    height: 70,
-                    padding: EdgeInsets.only(left: 5, top: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            width: 3.0,
-                            style: BorderStyle.solid,
-                            color: Colors.grey)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.lightBlueAccent,
-                                  borderRadius: BorderRadius.circular(100)),
-                              width: 30,
-                              height: 30,
-                              child: Icon(
-                                Icons.account_balance,
-                                color: Colors.white,
-                                size: 20,
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 70,
+                      padding: EdgeInsets.only(left: 5, top: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              width: 3.0,
+                              style: BorderStyle.solid,
+                              color: Colors.grey)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.lightBlueAccent,
+                                    borderRadius: BorderRadius.circular(100)),
+                                width: 30,
+                                height: 30,
+                                child: Icon(
+                                  Icons.account_balance,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Services",
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          "             Offered",
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 100,
-                    height: 70,
-                    padding: EdgeInsets.only(left: 5, top: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        border: Border.all(
-                            width: 3.0,
-                            style: BorderStyle.solid,
-                            color: Colors.grey)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(100)),
-                              width: 30,
-                              height: 30,
-                              child: Icon(
-                                Icons.payment,
-                                color: Colors.white,
-                                size: 20,
+                              SizedBox(
+                                width: 10,
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "Make a",
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          "             Payment",
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold),
-                        )
-                      ],
+                              Text(
+                                "Services",
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "             Offered",
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    Container(
+                      width: 100,
+                      height: 70,
+                      padding: EdgeInsets.only(left: 5, top: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          border: Border.all(
+                              width: 3.0,
+                              style: BorderStyle.solid,
+                              color: Colors.grey)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(100)),
+                                width: 30,
+                                height: 30,
+                                child: Icon(
+                                  Icons.payment,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Make a",
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "             Payment",
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
