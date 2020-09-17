@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 void main() {
   runApp(BankApp());
@@ -9,9 +8,10 @@ class BankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Bank App",
-        debugShowCheckedModeBanner: false,
-        home: WelcomePage());
+      title: 'Bank App',
+      debugShowCheckedModeBanner: false,
+      home: WelcomePage(),
+    );
   }
 }
 
@@ -46,7 +46,7 @@ class WelcomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: CircleAvatar(
-                backgroundImage: AssetImage("assets/chi.jpg"),
+                backgroundImage: AssetImage('assets/chi.jpg'),
               ),
             )
           ],
@@ -87,33 +87,41 @@ class WelcomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: 150,
-                    height: 150,
-                    padding: EdgeInsets.only(left: 20, top: 35),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.green),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.attach_money,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          "Transactions",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "4 Times",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontStyle: FontStyle.italic),
-                        ),
-                      ],
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return Transaction();
+                      }));
+                    },
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      padding: EdgeInsets.only(left: 20, top: 35),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.green),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.attach_money,
+                            color: Colors.white,
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            "Transactions",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            "4 Times",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontStyle: FontStyle.italic),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Container(
@@ -214,58 +222,52 @@ class WelcomePage extends StatelessWidget {
                 ],
               ),
               Container(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Choose a Category",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ]),
+                padding: EdgeInsets.only(top: 10, bottom: 10, left: 30),
+                child: Text(
+                  "Choose a Category",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
 
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      width: 100,
-                      height: 70,
-                      padding: EdgeInsets.only(left: 5, top: 10),
+                      width: 150,
+                      height: 50,
+                      padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
-                              width: 3.0,
+                              width: 0.3,
                               style: BorderStyle.solid,
                               color: Colors.grey)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Row(
                         children: [
-                          Row(
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlueAccent,
+                                borderRadius: BorderRadius.circular(100)),
+                            width: 30,
+                            height: 30,
+                            child: Icon(
+                              Icons.account_balance,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.lightBlueAccent,
-                                    borderRadius: BorderRadius.circular(100)),
-                                width: 30,
-                                height: 30,
-                                child: Icon(
-                                  Icons.account_balance,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
                               Text(
                                 "Services",
                                 style: TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.bold),
-                              ),
+                              )
                             ],
                           ),
                           Text(
@@ -314,11 +316,45 @@ class WelcomePage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Text(
-                            "             Payment",
-                            style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold),
-                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 150,
+                      height: 50,
+                      padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              width: 0.3,
+                              style: BorderStyle.solid,
+                              color: Colors.grey)),
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlueAccent,
+                                borderRadius: BorderRadius.circular(100)),
+                            width: 30,
+                            height: 30,
+                            child: Icon(
+                              Icons.payment,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 100,
+                            child: Text(
+                              "Make a Payment ahsasv shs a",
+                              softWrap: true,
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -328,5 +364,35 @@ class WelcomePage extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+
+class Transaction extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.blue,
+        appBar: AppBar(
+            backgroundColor: Colors.blue,
+            elevation: 0,
+            leading: Padding(
+              padding: EdgeInsets.only(left: 30.0, top: 10, bottom: 10.0),
+              child: IconButton(
+                  //TODO: call an app drawer
+                  onPressed: () => print("Pressed"),
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    size: 15,
+                  )),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.notifications,
+                  color: Colors.white,
+                ),
+              ),
+            ]));
   }
 }
