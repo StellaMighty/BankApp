@@ -101,33 +101,14 @@ class WelcomePage extends StatelessWidget {
                             return Transaction();
                           }));
                         },
-                        child: Container(
-                          width: _width / 2.8,
-                          height: _width / 2.8,
-                          padding: EdgeInsets.only(left: 20, top: 35),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.green),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.attach_money,
-                                color: Colors.white,
-                              ),
-                              SizedBox(height: 20),
-                              Text(
-                                "Transactions",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Text(
-                                "4 Times",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                    fontStyle: FontStyle.italic),
-                              ),
-                            ],
+                        child: BoxWidget(
+                          width: _width,
+                          color: Colors.green,
+                          title: 'Transactions',
+                          subTitle: '4 times',
+                          icon: Icon(
+                            Icons.monetization_on,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -333,6 +314,55 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
         ));
+  }
+}
+
+class BoxWidget extends StatelessWidget {
+  const BoxWidget({
+    Key key,
+    @required double width,
+    @required Color color,
+    @required Icon icon,
+    @required String title,
+    @required String subTitle,
+  })  : _width = width,
+        _color = color,
+        _icon = icon,
+        _title = title,
+        _subTitle = subTitle,
+        super(key: key);
+
+  final double _width;
+  final Color _color;
+  final Icon _icon;
+  final String _title;
+  final String _subTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: _width / 2.8,
+      height: _width / 2.8,
+      padding: EdgeInsets.only(left: 20, top: 35),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(10), color: _color),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _icon,
+          SizedBox(height: 20),
+          Text(
+            "$_title",
+            style: TextStyle(color: Colors.white),
+          ),
+          Text(
+            "$_subTitle",
+            style: TextStyle(
+                color: Colors.white, fontSize: 10, fontStyle: FontStyle.italic),
+          ),
+        ],
+      ),
+    );
   }
 }
 
