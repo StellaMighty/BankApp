@@ -415,7 +415,7 @@ class Transaction extends StatelessWidget {
                           Icons.money_off,
                           color: Colors.yellow,
                         ),
-                        Text("£15,000"),
+                        Text("£15,000", style: TextStyle(fontSize: 20)),
                         Text("Spend to Goals")
                       ],
                     ),
