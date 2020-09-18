@@ -18,6 +18,10 @@ class BankApp extends StatelessWidget {
 class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context).size;
+    double _height = mediaQuery.height;
+    print(_height);
+    double _width = mediaQuery.width;
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -51,276 +55,281 @@ class WelcomePage extends StatelessWidget {
             )
           ],
         ),
-        body: Container(
-          padding: EdgeInsets.only(
-            left: 30,
-            right: 10,
-            top: 20,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Welcome Back",
-                style: TextStyle(fontSize: 20),
-              ),
-              Text(
-                "Creative Mints",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              //SIZED BOX HERE
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(10)),
-                    hintText: "Search",
-                    prefixIcon: Icon(Icons.search)),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return Transaction();
-                    }));
-                  },
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    padding: EdgeInsets.only(left: 20, top: 35),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.green),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.attach_money,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          "Transactions",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "4 Times",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontStyle: FontStyle.italic),
-                        ),
-                      ],
-                    ),
-                  ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(
+              left: 30,
+              right: 10,
+              top: 20,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Welcome Back",
+                  style: TextStyle(fontSize: 20),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return Budget();
-                    }));
-                  },
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    padding: EdgeInsets.only(left: 20, top: 35),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.red),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.shutter_speed,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          "Budget",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "4 Times",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontStyle: FontStyle.italic),
-                        ),
-                      ],
-                    ),
-                  ),
+                Text(
+                  "Creative Mints",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-              ]),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    width: 150,
-                    height: 150,
-                    padding: EdgeInsets.only(left: 20, top: 35),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.orangeAccent),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.star_border,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          "Recommendation",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "4 Times",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontStyle: FontStyle.italic),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 150,
-                    height: 150,
-                    padding: EdgeInsets.only(left: 20, top: 35),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.credit_card,
-                          color: Colors.white,
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          "Credit Cards",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "4 Times",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontStyle: FontStyle.italic),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 10, bottom: 10, left: 30),
-                child: Text(
-                  "Choose a Category",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                //SIZED BOX HERE
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                TextField(
+                  decoration: InputDecoration(
+                      isDense: true,
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(10)),
+                      hintText: "Search",
+                      prefixIcon: Icon(Icons.search)),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return Transaction();
+                          }));
+                        },
+                        child: Container(
+                          width: _width / 2.8,
+                          height: _width / 2.8,
+                          padding: EdgeInsets.only(left: 20, top: 35),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.green),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.attach_money,
+                                color: Colors.white,
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                "Transactions",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Text(
+                                "4 Times",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return Budget();
+                          }));
+                        },
+                        child: Container(
+                          width: _width / 2.8,
+                          height: _width / 2.8,
+                          padding: EdgeInsets.only(left: 20, top: 35),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.red),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.shutter_speed,
+                                color: Colors.white,
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                "Budget",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Text(
+                                "4 Times",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ]),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      width: 150,
-                      height: 50,
-                      padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                      width: _width / 2.8,
+                      height: _width / 2.8,
+                      padding: EdgeInsets.only(left: 20, top: 35),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              width: 0.3,
-                              style: BorderStyle.solid,
-                              color: Colors.grey)),
-                      child: Row(
+                          color: Colors.orangeAccent),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.lightBlueAccent,
-                                borderRadius: BorderRadius.circular(100)),
-                            width: 30,
-                            height: 30,
-                            child: Icon(
-                              Icons.account_balance,
-                              color: Colors.white,
-                              size: 20,
-                            ),
+                          Icon(
+                            Icons.star_border,
+                            color: Colors.white,
                           ),
-                          SizedBox(
-                            width: 10,
+                          SizedBox(height: 20),
+                          Text(
+                            "Recommendation",
+                            style: TextStyle(color: Colors.white),
                           ),
-                          Container(
-                            width: 100,
-                            child: Text(
-                              "Services Offered",
-                              softWrap: true,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.bold),
-                            ),
+                          Text(
+                            "4 Times",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontStyle: FontStyle.italic),
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      width: 150,
-                      height: 50,
-                      padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                      width: _width / 2.8,
+                      height: _width / 2.8,
+                      padding: EdgeInsets.only(left: 20, top: 35),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              width: 0.3,
-                              style: BorderStyle.solid,
-                              color: Colors.grey)),
-                      child: Row(
+                          color: Colors.blue),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.lightBlueAccent,
-                                borderRadius: BorderRadius.circular(100)),
-                            width: 30,
-                            height: 30,
-                            child: Icon(
-                              Icons.payment,
-                              color: Colors.white,
-                              size: 20,
-                            ),
+                          Icon(
+                            Icons.credit_card,
+                            color: Colors.white,
                           ),
-                          SizedBox(
-                            width: 10,
+                          SizedBox(height: 20),
+                          Text(
+                            "Credit Cards",
+                            style: TextStyle(color: Colors.white),
                           ),
-                          Container(
-                            width: 100,
-                            child: Text(
-                              "Make a Payment",
-                              softWrap: true,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.bold),
-                            ),
+                          Text(
+                            "4 Times",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontStyle: FontStyle.italic),
                           ),
                         ],
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
+                Container(
+                  padding: EdgeInsets.only(top: 10, bottom: 10, left: 30),
+                  child: Text(
+                    "Choose a Category",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: _width / 2.3,
+                        height: _height * 0.07,
+                        padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                width: 0.3,
+                                style: BorderStyle.solid,
+                                color: Colors.grey)),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.lightBlueAccent,
+                                  borderRadius: BorderRadius.circular(100)),
+                              width: 30,
+                              height: 30,
+                              child: Icon(
+                                Icons.account_balance,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              width: 100,
+                              child: Text(
+                                "Services Offered",
+                                softWrap: true,
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: _width / 2.3,
+                        height: _height * 0.07,
+                        padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                width: 0.3,
+                                style: BorderStyle.solid,
+                                color: Colors.grey)),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.lightBlueAccent,
+                                  borderRadius: BorderRadius.circular(100)),
+                              width: 30,
+                              height: 30,
+                              child: Icon(
+                                Icons.payment,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              width: 100,
+                              child: Text(
+                                "Make a Payment",
+                                softWrap: true,
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ));
   }
@@ -330,9 +339,9 @@ class Transaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xff2f26d9),
         appBar: AppBar(
-            backgroundColor: Colors.blue,
+            backgroundColor: Color(0xff2f26d9),
             elevation: 0,
             leading: Padding(
               padding: EdgeInsets.only(left: 30.0, top: 10, bottom: 10.0),
@@ -382,7 +391,7 @@ class Transaction extends StatelessWidget {
                     width: 150,
                     padding: EdgeInsets.only(left: 30),
                     decoration: BoxDecoration(
-                        color: Colors.tealAccent,
+                        color: Color(0xffc4f2ff),
                         borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -390,7 +399,8 @@ class Transaction extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.monetization_on,
-                          color: Colors.blue,
+                          color: Color(0xff3674ef),
+                          size: 40,
                         ),
                         Text(
                           "£5,000",
@@ -405,7 +415,7 @@ class Transaction extends StatelessWidget {
                     width: 150,
                     padding: EdgeInsets.only(left: 30),
                     decoration: BoxDecoration(
-                        color: Colors.red.shade100,
+                        color: Color(0xffffe6d7),
                         borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -413,7 +423,8 @@ class Transaction extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.money_off,
-                          color: Colors.yellow,
+                          color: Color(0xfff2a715),
+                          size: 40,
                         ),
                         Text("£15,000", style: TextStyle(fontSize: 20)),
                         Text("Spend to Goals")
