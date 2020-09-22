@@ -27,7 +27,6 @@ class WelcomePage extends StatelessWidget {
     double _width = mediaQuery.width;
     return Scaffold(
         backgroundColor: Colors.white,
-        drawer: ,
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
