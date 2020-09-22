@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bankapp/pages/transaction.dart';
+import 'package:bankapp/Budget.dart';
+import 'package:bankapp/Recommendation.dart';
 
 void main() {
   runApp(BankApp());
@@ -25,6 +27,7 @@ class WelcomePage extends StatelessWidget {
     double _width = mediaQuery.width;
     return Scaffold(
         backgroundColor: Colors.white,
+        drawer: ,
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -68,7 +71,10 @@ class WelcomePage extends StatelessWidget {
               children: [
                 Text(
                   "Welcome Back",
-                  style: TextStyle(fontSize: 20, fontFamily: 'Lobster'),
+                  style: TextStyle(fontSize: 18, fontFamily: 'Lobster'),
+                ),
+                SizedBox(
+                  height: _height * 0.01,
                 ),
                 Text(
                   "Creative Mints",
@@ -76,7 +82,7 @@ class WelcomePage extends StatelessWidget {
                 ),
                 //SIZED BOX HERE
                 SizedBox(
-                  height: 20,
+                  height: _height * 0.05,
                 ),
                 TextField(
                   decoration: InputDecoration(
@@ -89,7 +95,7 @@ class WelcomePage extends StatelessWidget {
                       prefixIcon: Icon(Icons.search)),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: _height * 0.02,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -102,7 +108,7 @@ class WelcomePage extends StatelessWidget {
                           }));
                         },
                         child: BoxWidget(
-                          width: _width,
+                          width: _width / 0.9,
                           color: Colors.green,
                           title: 'Transactions',
                           subTitle: '4 times',
@@ -110,6 +116,7 @@ class WelcomePage extends StatelessWidget {
                             Icons.monetization_on,
                             color: Colors.white,
                           ),
+                          height: _height / 0.2,
                         ),
                       ),
                       InkWell(
@@ -120,8 +127,8 @@ class WelcomePage extends StatelessWidget {
                           }));
                         },
                         child: Container(
-                          width: _width / 2.8,
-                          height: _width / 2.8,
+                          width: _width / 2.5,
+                          height: _width / 2.5,
                           padding: EdgeInsets.only(left: 20, top: 35),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
@@ -151,43 +158,51 @@ class WelcomePage extends StatelessWidget {
                       ),
                     ]),
                 SizedBox(
-                  height: 20,
+                  height: _height * 0.03,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      width: _width / 2.8,
-                      height: _width / 2.8,
-                      padding: EdgeInsets.only(left: 20, top: 35),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.orangeAccent),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.star_border,
-                            color: Colors.white,
-                          ),
-                          SizedBox(height: 20),
-                          Text(
-                            "Recommendation",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            "4 Times",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontStyle: FontStyle.italic),
-                          ),
-                        ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return Recommendation();
+                        }));
+                      },
+                      child: Container(
+                        width: _width / 2.5,
+                        height: _width / 2.5,
+                        padding: EdgeInsets.only(left: 20, top: 35),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.orangeAccent),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.star_border,
+                              color: Colors.white,
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              "Recommendation",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              "4 Times",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontStyle: FontStyle.italic),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(
-                      width: _width / 2.8,
-                      height: _width / 2.8,
+                      width: _width / 2.5,
+                      height: _width / 2.5,
                       padding: EdgeInsets.only(left: 20, top: 35),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -321,11 +336,13 @@ class BoxWidget extends StatelessWidget {
   const BoxWidget({
     Key key,
     @required double width,
+    @required double height,
     @required Color color,
     @required Icon icon,
     @required String title,
     @required String subTitle,
   })  : _width = width,
+        _height = height,
         _color = color,
         _icon = icon,
         _title = title,
@@ -333,6 +350,7 @@ class BoxWidget extends StatelessWidget {
         super(key: key);
 
   final double _width;
+  final double _height;
   final Color _color;
   final Icon _icon;
   final String _title;
@@ -362,16 +380,6 @@ class BoxWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class Budget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue,
-      appBar: AppBar(),
     );
   }
 }
