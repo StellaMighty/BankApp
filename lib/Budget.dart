@@ -78,52 +78,76 @@ class Budget extends StatelessWidget {
           ),
           Container(
             height: _height * 0.08,
+            width: _width,
             child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.all(15),
+              scrollDirection: Axis.horizontal,
               children: [
-                ListTile(
-                  leading: Text(
-                    "My Cards",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                  title: Center(
-                    child: Text(
-                      "Deposits",
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w100),
-                    ),
-                  ),
-                  trailing: Text(
-                    "Loyalty Programme",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w100),
-                  ),
-                )
+                Text(
+                  'My Card',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                SizedBox(
+                  width: 40,
+                ),
+                Text(
+                  'Deposit',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                SizedBox(
+                  width: 40,
+                ),
+                Text(
+                  'Loyalty Programme',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
               ],
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                    bottomLeft: Radius.zero,
-                    bottomRight: Radius.zero),
-                color: Colors.orangeAccent),
-            height: _height * 0.08,
-            width: _width * 0.8,
-          ),
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30)),
-                color: Colors.deepPurpleAccent),
-            height: _height * 0.08,
-            width: _width * 0.8,
-          ),
+          Expanded(
+            flex: 2,
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  left: 20,
+                  right: 20,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.orangeAccent),
+                    height: _height * 0.2,
+                    width: _width * 0.8,
+                  ),
+                ),
+                Positioned(
+                  top: 30,
+                  left: 20,
+                  right: 20,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.deepPurpleAccent),
+                    height: _height * 0.2,
+                    width: _width * 0.8,
+                  ),
+                ),
+                Positioned(
+                  top: 60,
+                  left: 20,
+                  right: 20,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.redAccent),
+                    height: _height * 0.2,
+                    width: _width * 0.8,
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
