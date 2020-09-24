@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Transaction extends StatelessWidget {
+  List<Widget> _transactions = [
+    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
+    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
+    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
+    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
+    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,112 +152,7 @@ class Transaction extends StatelessWidget {
                           right: 20,
                         ),
                         child: ListView(
-                          children: [
-                            ListTile(
-                              leading: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      color: Colors.orange,
-                                      borderRadius: BorderRadius.circular(100)),
-                                  child: Icon(
-                                    Icons.directions_car,
-                                    color: Colors.white,
-                                  )),
-                              title: Text("Car Purchase"),
-                              subtitle: Text(
-                                "Auto loan",
-                                style: TextStyle(
-                                    color: Colors.deepPurple,
-                                    fontStyle: FontStyle.italic),
-                              ),
-                              trailing: Text("-£200"),
-                            ),
-                            ListTile(
-                              leading: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(100)),
-                                  child: Icon(
-                                    Icons.home,
-                                    color: Colors.white,
-                                  )),
-                              title: Text("Home Purchase"),
-                              subtitle: Text(
-                                "Airbnb",
-                                style: TextStyle(
-                                    color: Colors.deepPurple,
-                                    fontStyle: FontStyle.italic),
-                              ),
-                              trailing: Text("£2500"),
-                            ),
-                            ListTile(
-                              leading: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      color: Colors.pinkAccent,
-                                      borderRadius: BorderRadius.circular(100)),
-                                  child: Icon(
-                                    Icons.card_giftcard,
-                                    color: Colors.white,
-                                  )),
-                              title: Text("Transport"),
-                              subtitle: Text(
-                                "Uber, Patho",
-                                style: TextStyle(
-                                    color: Colors.deepPurple,
-                                    fontStyle: FontStyle.italic),
-                              ),
-                              trailing: Text("£1800"),
-                            ),
-                            ListTile(
-                              leading: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      color: Colors.teal,
-                                      borderRadius: BorderRadius.circular(100)),
-                                  child: Icon(
-                                    Icons.shopping_basket,
-                                    color: Colors.white,
-                                  )),
-                              title: Text("Shopping"),
-                              subtitle: Text(
-                                "wish, Apple",
-                                style: TextStyle(
-                                  color: Colors.deepPurple,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                              trailing: Text("£500"),
-                            ),
-                            ListTile(
-                              leading: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.circular(100)),
-                                  child: Icon(
-                                    Icons.home,
-                                    color: Colors.white,
-                                  )),
-                              title: Text(
-                                "Groceries",
-                              ),
-                              subtitle: Text(
-                                "Consumables, Indomie",
-                                style: TextStyle(
-                                  color: Colors.deepPurple,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                              trailing: Text("£2500"),
-                            )
-                          ],
+                          children: _transactions,
                         ),
                       ),
                     ),
@@ -258,5 +160,39 @@ class Transaction extends StatelessWidget {
                 ),
               )
             ]));
+  }
+}
+
+class TransactionItem extends StatelessWidget {
+  const TransactionItem(
+    this.icon,
+    this.title,
+    this.subtitle,
+    this.trailing,
+  );
+  final Icon icon;
+  final String title;
+  final String subtitle;
+  final String trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Container(
+          height: 40,
+          width: 40,
+          decoration: BoxDecoration(
+              color: Colors.orange, borderRadius: BorderRadius.circular(100)),
+          child: Icon(
+            Icons.directions_car,
+            color: Colors.white,
+          )),
+      title: Text("Car Purchase"),
+      subtitle: Text(
+        "Auto loan",
+        style: TextStyle(color: Colors.deepPurple, fontStyle: FontStyle.italic),
+      ),
+      trailing: Text("-£200"),
+    );
   }
 }
