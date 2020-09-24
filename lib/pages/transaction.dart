@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class Transaction extends StatelessWidget {
-  final List list = ['one', 'two'];
-  final List<Widget> _transactions = <Widget>[
-    TransactionItem('Car Purchase', 'Auto loan', '\$200'),
-    TransactionItem('Car Purchase', 'Auto loan', '\$200'),
-    TransactionItem('Car Purchase', 'Auto loan', '\$200'),
-    TransactionItem('Car Purchase', 'Auto loan', '\$200'),
+  final List _transactions = [
+    {'title': 'Car Purchase', 'subtitle': 'Auto loan', 'amount': '\$200'},
+    {'title': 'Food Stuff', 'subtitle': 'I but food', 'amount': '\$400'},
+    {'title': 'Travel', 'subtitle': 'Lagos', 'amount': '\$1000'},
+    {'title': 'School fee', 'subtitle': 'Year one fee', 'amount': '\$4000'},
+    {'title': 'Car Purchase', 'subtitle': 'Auto loan', 'amount': '\$200'},
+    {'title': 'Food Stuff', 'subtitle': 'I but food', 'amount': '\$400'},
+    {'title': 'Travel', 'subtitle': 'Lagos', 'amount': '\$1000'},
+    {'title': 'School fee', 'subtitle': 'Year one fee', 'amount': '\$4000'},
   ];
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,6 @@ class Transaction extends StatelessWidget {
             leading: Padding(
               padding: EdgeInsets.only(left: 30.0, top: 10, bottom: 10.0),
               child: IconButton(
-                  //TODO: call an app drawer
                   onPressed: () =>
                       Navigator.pop(context), //takes you back to previous page
                   icon: Icon(
@@ -151,8 +153,15 @@ class Transaction extends StatelessWidget {
                           left: 20,
                           right: 20,
                         ),
-                        child: ListView(
-                          children: _transactions,
+                        child: ListView.builder(
+                          itemCount: _transactions.length,
+                          itemBuilder: (context, index) {
+                            //TODO: make subtitle and trailing dynamic
+                            return TransactionItem(
+                                _transactions[index]['title'],
+                                'a subtitle',
+                                'a trailing');
+                          },
                         ),
                       ),
                     ),
@@ -163,6 +172,9 @@ class Transaction extends StatelessWidget {
   }
 }
 
+//TODO: refactor the project directory by taking the TransactionItem to the widgets folder
+//TODO: Do thesame thing for the BoxContainer created before
+//TODO: Move the Budget.dart and Recommendation.dart to the pages folder
 class TransactionItem extends StatelessWidget {
   const TransactionItem(this.title, this.subtitle, this.trailing);
 
