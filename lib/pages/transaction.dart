@@ -12,7 +12,8 @@ class Transaction extends StatelessWidget {
               padding: EdgeInsets.only(left: 30.0, top: 10, bottom: 10.0),
               child: IconButton(
                   //TODO: call an app drawer
-                  onPressed: () => print("Pressed"),
+                  onPressed: () =>
+                      Navigator.pop(context), //takes you back to previous page
                   icon: Icon(
                     Icons.arrow_back_ios,
                     size: 15,

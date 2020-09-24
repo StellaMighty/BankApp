@@ -1,6 +1,23 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
-class Budget extends StatelessWidget {
+class Budget extends StatefulWidget {
+  @override
+  _BudgetState createState() => _BudgetState();
+}
+
+class _BudgetState extends State<Budget> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _openDrawer() {
+    _scaffoldKey.currentState.openDrawer();
+  }
+
+  void _closeDrawer() {
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -9,16 +26,18 @@ class Budget extends StatelessWidget {
     double _width = mediaQuery.width;
     print(_width);
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Color(0xff191970),
       appBar: AppBar(
         backgroundColor: Color(0xff191970),
-        leading: CircleAvatar(
-          backgroundImage: AssetImage("assets/chi.jpg"),
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back_ios),
         ),
         title: Text("Hi Mints !"),
         actions: [
           Icon(
-            Icons.notifications,
+            Icons.add_a_photo,
             color: Colors.white,
           )
         ],
@@ -76,6 +95,7 @@ class Budget extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: _height * 0.08),
           Container(
             height: _height * 0.08,
             width: _width,
@@ -105,6 +125,9 @@ class Budget extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(
+            height: _height * 0.02,
+          ),
           Expanded(
             flex: 2,
             child: Stack(
@@ -116,33 +139,105 @@ class Budget extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Colors.orangeAccent),
-                    height: _height * 0.2,
+                        color: Colors.orangeAccent,
+                        border: Border.all(color: Color(0xff00008B))),
+                    height: _height * 0.23,
                     width: _width * 0.8,
+                    child: ListTile(
+                      title: Text(
+                        "Security Card",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      trailing: Text("£ 400,000",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold)),
+                    ),
                   ),
                 ),
                 Positioned(
-                  top: 30,
+                  top: 50,
                   left: 20,
                   right: 20,
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Colors.deepPurpleAccent),
-                    height: _height * 0.2,
+                        color: Colors.deepPurpleAccent,
+                        border: Border.all(color: Color(0xff00008B))),
+                    height: _height * 0.23,
                     width: _width * 0.8,
+                    child: ListTile(
+                      title: Text("Private Card",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold)),
+                      trailing: Text("£ 7,400,000",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold)),
+                    ),
                   ),
                 ),
                 Positioned(
-                  top: 60,
+                  top: 100,
                   left: 20,
                   right: 20,
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Colors.redAccent),
-                    height: _height * 0.2,
+                        color: Colors.redAccent,
+                        border: Border.all(color: Color(0xff00008B))),
+                    height: _height * 0.23,
                     width: _width * 0.8,
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: Text("Family Card",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold)),
+                          trailing: Text("£ 7,400,000",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 20,
+                                backgroundImage: AssetImage("assets/wow.jpeg"),
+                              ),
+                              CircleAvatar(
+                                radius: 20,
+                                backgroundImage:
+                                    AssetImage("assets/birth.jpeg"),
+                              ),
+                              Icon(
+                                Icons.add_circle_outline,
+                                size: 40,
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
+                        ),
+                        ListTile(
+                          trailing: Text(
+                            "VISA",
+                            style: TextStyle(color: Colors.white, fontSize: 28),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],

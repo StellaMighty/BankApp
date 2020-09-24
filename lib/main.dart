@@ -48,6 +48,7 @@ class _WelcomePageState extends State<WelcomePage> {
     print(_height);
     double _width = mediaQuery.width;
     return SafeArea(
+      /// this makes the app start from below the phone notification top bar
       child: Scaffold(
           key: _scaffoldKey,
           backgroundColor: Colors.white,
@@ -55,6 +56,8 @@ class _WelcomePageState extends State<WelcomePage> {
             backgroundColor: Colors.white,
             elevation: 0,
             automaticallyImplyLeading: false,
+
+            ///this tells Flutter not to automatically give us a leading
             title: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -95,29 +98,57 @@ class _WelcomePageState extends State<WelcomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CircleAvatar(
-                        radius: 40,
+                        backgroundImage: AssetImage("assets/chi.jpg"),
+                        radius: 40, //the size of the avatar
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Creative Mint',
+                            'Creative Mints',
                             style: TextStyle(fontSize: 20),
                           ),
-                          Text('email@app.com')
+                          Text('creativemints@app.com')
                         ],
                       )
                     ],
                   ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.account_circle),
+                  leading: Icon(
+                    Icons.account_circle,
+                    color: Colors.green,
+                  ),
                   title: Text('Profile'),
                 ),
                 ListTile(
-                  leading: Icon(Icons.account_balance_wallet),
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    color: Colors.blue,
+                  ),
                   title: Text('Budget List'),
-                )
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.question_answer,
+                    color: Colors.purple,
+                  ),
+                  title: Text('How to use'),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.share,
+                    color: Colors.red,
+                  ),
+                  title: Text('Share App'),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.settings,
+                    color: Colors.purple,
+                  ),
+                  title: Text('Settings'),
+                ),
               ],
             ),
           ),
@@ -128,7 +159,13 @@ class _WelcomePageState extends State<WelcomePage> {
                   flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text('Notifications'),
+                    child: Text(
+                      'Notifications',
+                      style: TextStyle(
+                          color: Color(0xff000080),
+                          fontSize: 20,
+                          fontStyle: FontStyle.italic),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -137,40 +174,40 @@ class _WelcomePageState extends State<WelcomePage> {
                     shrinkWrap: true,
                     children: [
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('23 New Messages'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('2 New Cards added'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('Budget has just been updated'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('5 Updated Required'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('...'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('...'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('...'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('...'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('...'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('...'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('...'),
                       ),
                       ListTile(
-                        title: Text('Some title here'),
+                        title: Text('...'),
                       ),
                     ],
                   ),

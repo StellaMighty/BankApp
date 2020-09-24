@@ -48,6 +48,11 @@ flutter:
   assets:
     - assets/chi.jpg
     - assets/element.png
+    - assets/wow.jpeg
+    - assets/birth.jpeg
+    
+    - assets/screenb.png
+    - assets/screena.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
