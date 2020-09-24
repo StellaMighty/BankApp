@@ -45,7 +45,6 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     double _height = mediaQuery.height;
-    print(_height);
     double _width = mediaQuery.width;
     return SafeArea(
       /// this makes the app start from below the phone notification top bar

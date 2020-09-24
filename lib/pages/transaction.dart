@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class Transaction extends StatelessWidget {
-  List<Widget> _transactions = [
-    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
-    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
-    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
-    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
-    TransactionItem(Icon(Icons.ac_unit), "Car Purchase", "Auto loan", "£300"),
+  final List _transactions = [
+    {'title': 'Car Purchase', 'subtitle': 'Auto loan', 'amount': '\$200'},
+    {'title': 'Food Stuff', 'subtitle': 'I but food', 'amount': '\$400'},
+    {'title': 'Travel', 'subtitle': 'Lagos', 'amount': '\$1000'},
+    {'title': 'School fee', 'subtitle': 'Year one fee', 'amount': '\$4000'},
+    {'title': 'Car Purchase', 'subtitle': 'Auto loan', 'amount': '\$200'},
+    {'title': 'Food Stuff', 'subtitle': 'I but food', 'amount': '\$400'},
+    {'title': 'Travel', 'subtitle': 'Lagos', 'amount': '\$1000'},
+    {'title': 'School fee', 'subtitle': 'Year one fee', 'amount': '\$4000'},
   ];
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,6 @@ class Transaction extends StatelessWidget {
             leading: Padding(
               padding: EdgeInsets.only(left: 30.0, top: 10, bottom: 10.0),
               child: IconButton(
-                  //TODO: call an app drawer
                   onPressed: () =>
                       Navigator.pop(context), //takes you back to previous page
                   icon: Icon(
@@ -151,8 +153,15 @@ class Transaction extends StatelessWidget {
                           left: 20,
                           right: 20,
                         ),
-                        child: ListView(
-                          children: _transactions,
+                        child: ListView.builder(
+                          itemCount: _transactions.length,
+                          itemBuilder: (context, index) {
+                            //TODO: make subtitle and trailing dynamic
+                            return TransactionItem(
+                                _transactions[index]['title'],
+                                'a subtitle',
+                                'a trailing');
+                          },
                         ),
                       ),
                     ),
@@ -163,14 +172,12 @@ class Transaction extends StatelessWidget {
   }
 }
 
+//TODO: refactor the project directory by taking the TransactionItem to the widgets folder
+//TODO: Do thesame thing for the BoxContainer created before
+//TODO: Move the Budget.dart and Recommendation.dart to the pages folder
 class TransactionItem extends StatelessWidget {
-  const TransactionItem(
-    this.icon,
-    this.title,
-    this.subtitle,
-    this.trailing,
-  );
-  final Icon icon;
+  const TransactionItem(this.title, this.subtitle, this.trailing);
+
   final String title;
   final String subtitle;
   final String trailing;
@@ -179,20 +186,21 @@ class TransactionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Container(
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(
-              color: Colors.orange, borderRadius: BorderRadius.circular(100)),
-          child: Icon(
-            Icons.directions_car,
-            color: Colors.white,
-          )),
-      title: Text("Car Purchase"),
+        height: 40,
+        width: 40,
+        decoration: BoxDecoration(
+            color: Colors.orange, borderRadius: BorderRadius.circular(100)),
+        child: Icon(
+          Icons.directions_car,
+          color: Colors.white,
+        ),
+      ),
+      title: Text(title),
       subtitle: Text(
-        "Auto loan",
+        subtitle,
         style: TextStyle(color: Colors.deepPurple, fontStyle: FontStyle.italic),
       ),
-      trailing: Text("-£200"),
+      trailing: Text(trailing),
     );
   }
 }

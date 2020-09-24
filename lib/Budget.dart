@@ -22,9 +22,9 @@ class _BudgetState extends State<Budget> {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     double _height = mediaQuery.height;
-    print(_height);
+
     double _width = mediaQuery.width;
-    print(_width);
+
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Color(0xff191970),
