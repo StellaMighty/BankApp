@@ -1,21 +1,22 @@
 import 'package:bankapp/pages/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
 
-class Transaction extends StatelessWidget {
-  final List _transactions = [
-    {'title': 'Car Purchase', 'subtitle': 'Auto loan', 'amount': '\$200'},
-    {'title': 'Food Stuff', 'subtitle': 'I but food', 'amount': '\$400'},
-    {'title': 'Travel', 'subtitle': 'Lagos', 'amount': '\$1000'},
-    {'title': 'School fee', 'subtitle': 'Year one fee', 'amount': '\$4000'},
-    {'title': 'Garments', 'subtitle': 'clothing', 'amount': '\$300'},
-    {'title': 'Devices', 'subtitle': 'Keyboard', 'amount': '\$500'},
-    {'title': 'History Studies', 'subtitle': 'France', 'amount': '\$200'},
-    {
-      'title': 'Nation Building',
-      'subtitle': 'Public Awareness',
-      'amount': '\$900'
-    },
-  ];
+class Transaction extends StatefulWidget {
+  @override
+  _TransactionState createState() => _TransactionState();
+}
+
+class _TransactionState extends State<Transaction> {
+  final _formKey = GlobalKey<FormState>();
+
+  final List _transactions = [];
+
+  String title;
+
+  String subtitle;
+
+  String amount;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -182,6 +183,7 @@ class Transaction extends StatelessWidget {
                   builder: (context) {
                     return Container(
                       child: Form(
+                        key: _formKey,
                         child: Column(
                           children: [
                             Padding(
@@ -197,22 +199,71 @@ class Transaction extends StatelessWidget {
                                 decoration: InputDecoration(
                                     hintText: 'Enter Title',
                                     border: OutlineInputBorder()),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Tile cannot be empty';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  title = value;
+                                },
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                  decoration: InputDecoration(
-                                      hintText: "Enter a Subtitle",
-                                      border: OutlineInputBorder())),
+                                decoration: InputDecoration(
+                                    hintText: "Enter a Subtitle",
+                                    border: OutlineInputBorder()),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Subtitle cannot be empty';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  subtitle = value;
+                                },
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                  decoration: InputDecoration(
-                                      hintText: "Enter Amount",
-                                      border: OutlineInputBorder())),
-                            )
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                    hintText: "Enter Amount",
+                                    border: OutlineInputBorder()),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Amount cannot be empty';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  amount = value;
+                                },
+                              ),
+                            ),
+                            FlatButton(
+                                color: Colors.blue,
+                                textColor: Colors.white,
+                                onPressed: () {
+                                  if (_formKey.currentState.validate()) {
+                                    _formKey.currentState.save();
+                                    setState(() {});
+                                    var item = {
+                                      "title": title,
+                                      "subtitle": subtitle,
+                                      "amount": amount
+                                    };
+                                    _transactions.add(item);
+                                    _formKey.currentState.reset();
+                                    return null;
+                                  }
+                                  print('form failed');
+                                },
+                                child: Text('Add Item'))
                           ],
                         ),
                       ),
