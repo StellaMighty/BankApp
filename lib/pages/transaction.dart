@@ -173,6 +173,38 @@ class Transaction extends StatelessWidget {
                   ],
                 ),
               )
-            ]));
+            ]),
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      child: Form(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Create a record',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                    hintText: 'Enter Title',
+                                    border: OutlineInputBorder()),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  });
+              //TODO:call a function that opens a form
+            }));
   }
 }
