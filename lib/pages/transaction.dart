@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "package:bankapp/makeupWidgets.dart";
+import 'file:///C:/Users/PIUS%20OWAN%20OJUA/AndroidStudioProjects/bankapp/lib/pages/makeupWidgets.dart';
 
 class Transaction extends StatelessWidget {
   final List _transactions = [
@@ -7,10 +7,14 @@ class Transaction extends StatelessWidget {
     {'title': 'Food Stuff', 'subtitle': 'I but food', 'amount': '\$400'},
     {'title': 'Travel', 'subtitle': 'Lagos', 'amount': '\$1000'},
     {'title': 'School fee', 'subtitle': 'Year one fee', 'amount': '\$4000'},
-    {'title': 'Car Purchase', 'subtitle': 'Auto loan', 'amount': '\$200'},
-    {'title': 'Food Stuff', 'subtitle': 'I but food', 'amount': '\$400'},
-    {'title': 'Travel', 'subtitle': 'Lagos', 'amount': '\$1000'},
-    {'title': 'School fee', 'subtitle': 'Year one fee', 'amount': '\$4000'},
+    {'title': 'Garments', 'subtitle': 'clothing', 'amount': '\$300'},
+    {'title': 'Devices', 'subtitle': 'Keyboard', 'amount': '\$500'},
+    {'title': 'History Studies', 'subtitle': 'France', 'amount': '\$200'},
+    {
+      'title': 'Nation Building',
+      'subtitle': 'Public Awareness',
+      'amount': '\$900'
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -157,11 +161,11 @@ class Transaction extends StatelessWidget {
                         child: ListView.builder(
                           itemCount: _transactions.length,
                           itemBuilder: (context, index) {
-                            //TODO: make subtitle and trailing dynamic
                             return TransactionItem(
-                                _transactions[index]['title'],
-                                'a subtitle',
-                                'a trailing');
+                              _transactions[index]['title'],
+                              _transactions[index]['subtitle'],
+                              _transactions[index]['amount'],
+                            );
                           },
                         ),
                       ),
@@ -172,6 +176,3 @@ class Transaction extends StatelessWidget {
             ]));
   }
 }
-
-//TODO: Do thesame thing for the BoxContainer created before
-//TODO: Move the Budget.dart and Recommendation.dart to the pages folder
