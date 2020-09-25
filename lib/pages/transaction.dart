@@ -198,6 +198,20 @@ class Transaction extends StatelessWidget {
                                     hintText: 'Enter Title',
                                     border: OutlineInputBorder()),
                               ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                  decoration: InputDecoration(
+                                      hintText: "Enter a Subtitle",
+                                      border: OutlineInputBorder())),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                  decoration: InputDecoration(
+                                      hintText: "Enter Amount",
+                                      border: OutlineInputBorder())),
                             )
                           ],
                         ),

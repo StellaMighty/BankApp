@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 class TransactionItem extends StatelessWidget {
-  const TransactionItem(this.title, this.subtitle, this.trailing);
+  const TransactionItem(this.title, this.subtitle,
+      this.trailing); //to define the properties of the item
 
   final String title;
   final String subtitle;
