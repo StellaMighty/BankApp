@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:bankapp/makeupWidgets.dart";
 
 class Transaction extends StatelessWidget {
   final List _transactions = [
@@ -172,35 +173,5 @@ class Transaction extends StatelessWidget {
   }
 }
 
-//TODO: refactor the project directory by taking the TransactionItem to the widgets folder
 //TODO: Do thesame thing for the BoxContainer created before
 //TODO: Move the Budget.dart and Recommendation.dart to the pages folder
-class TransactionItem extends StatelessWidget {
-  const TransactionItem(this.title, this.subtitle, this.trailing);
-
-  final String title;
-  final String subtitle;
-  final String trailing;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Container(
-        height: 40,
-        width: 40,
-        decoration: BoxDecoration(
-            color: Colors.orange, borderRadius: BorderRadius.circular(100)),
-        child: Icon(
-          Icons.directions_car,
-          color: Colors.white,
-        ),
-      ),
-      title: Text(title),
-      subtitle: Text(
-        subtitle,
-        style: TextStyle(color: Colors.deepPurple, fontStyle: FontStyle.italic),
-      ),
-      trailing: Text(trailing),
-    );
-  }
-}
