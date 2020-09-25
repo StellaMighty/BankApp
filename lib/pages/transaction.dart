@@ -1,5 +1,5 @@
+import 'package:bankapp/pages/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/PIUS%20OWAN%20OJUA/AndroidStudioProjects/bankapp/lib/pages/makeupWidgets.dart';
 
 class Transaction extends StatelessWidget {
   final List _transactions = [

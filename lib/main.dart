@@ -1,8 +1,8 @@
+import 'package:bankapp/pages/widgets/box_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:bankapp/pages/transaction.dart';
 import 'package:bankapp/pages/Budget.dart';
 import 'package:bankapp/pages/Recommendation.dart';
-import 'file:///C:/Users/PIUS%20OWAN%20OJUA/AndroidStudioProjects/bankapp/lib/pages/makeupWidgets.dart';
 
 void main() {
   runApp(BankApp());
