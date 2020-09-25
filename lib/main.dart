@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bankapp/pages/transaction.dart';
-import 'package:bankapp/Budget.dart';
-import 'package:bankapp/Recommendation.dart';
+import 'package:bankapp/pages/Budget.dart';
+import 'package:bankapp/pages/Recommendation.dart';
 
 void main() {
   runApp(BankApp());
