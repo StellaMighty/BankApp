@@ -1,5 +1,6 @@
 import 'package:bankapp/pages/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
+import 'package:bankapp/data/transaction_data.dart';
 
 class Transaction extends StatefulWidget {
   @override
@@ -9,7 +10,14 @@ class Transaction extends StatefulWidget {
 class _TransactionState extends State<Transaction> {
   final _formKey = GlobalKey<FormState>();
 
-  final List _transactions = [];
+  var transactionList = new TransactionList();
+
+  List _transactions;
+
+  initState() {
+    _transactions = transactionList.getList();
+    super.initState();
+  }
 
   String title;
 
@@ -162,10 +170,38 @@ class _TransactionState extends State<Transaction> {
                         child: ListView.builder(
                           itemCount: _transactions.length,
                           itemBuilder: (context, index) {
-                            return TransactionItem(
-                              _transactions[index]['title'],
-                              _transactions[index]['subtitle'],
-                              _transactions[index]['amount'],
+                            return GestureDetector(
+                              onLongPress: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text('Deleting'),
+                                      content: Text('Are you sure?'),
+                                      actions: [
+                                        FlatButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                _transactions.removeAt(index);
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('Yes')),
+                                        FlatButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('No'))
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: TransactionItem(
+                                _transactions[index]['title'],
+                                _transactions[index]['subtitle'],
+                                _transactions[index]['amount'],
+                              ),
                             );
                           },
                         ),
@@ -257,7 +293,7 @@ class _TransactionState extends State<Transaction> {
                                       "subtitle": subtitle,
                                       "amount": amount
                                     };
-                                    _transactions.add(item);
+                                    transactionList.addTransaction(item);
                                     _formKey.currentState.reset();
                                     return null;
                                   }
@@ -269,7 +305,6 @@ class _TransactionState extends State<Transaction> {
                       ),
                     );
                   });
-              //TODO:call a function that opens a form
             }));
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bankapp/pages/transaction.dart';
 import 'package:bankapp/pages/Budget.dart';
 import 'package:bankapp/pages/Recommendation.dart';
+import 'package:bankapp/data/transaction_data.dart';
 
 void main() {
   runApp(BankApp());
@@ -34,6 +35,16 @@ class _WelcomePageState extends State<WelcomePage> {
 
   void _openNotificationDrawer() {
     _scaffoldKey.currentState.openEndDrawer();
+  }
+
+  TransactionList transactionList = new TransactionList();
+
+  @override
+  void initState() {
+    transactionList.addListener(() {
+      print('notifier');
+    });
+    super.initState();
   }
 
   /// close drawer if open
@@ -267,7 +278,8 @@ class _WelcomePageState extends State<WelcomePage> {
                             width: _width / 0.9,
                             color: Colors.green,
                             title: 'Transactions',
-                            subTitle: '4 times',
+                            subTitle:
+                                '${transactionList.transactionsCount} times',
                             icon: Icon(
                               Icons.monetization_on,
                               color: Colors.white,
