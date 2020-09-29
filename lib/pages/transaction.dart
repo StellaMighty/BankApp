@@ -19,6 +19,9 @@ class _TransactionState extends State<Transaction> {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context).size;
+    double _height = mediaQuery.height;
+    double _width = mediaQuery.width;
     return Scaffold(
         backgroundColor: Color(0xff2f26d9),
         appBar: AppBar(
@@ -57,7 +60,7 @@ class _TransactionState extends State<Transaction> {
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: _height * 0.02,
                     ),
                     Text("£900,000,000",
                         style: TextStyle(color: Colors.white, fontSize: 24)),
@@ -68,8 +71,8 @@ class _TransactionState extends State<Transaction> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    height: 150,
-                    width: 150,
+                    height: _height * 0.2,
+                    width: _width * 0.4,
                     padding: EdgeInsets.only(left: 30),
                     decoration: BoxDecoration(
                         color: Color(0xffc4f2ff),
@@ -92,8 +95,8 @@ class _TransactionState extends State<Transaction> {
                     ),
                   ),
                   Container(
-                    height: 150,
-                    width: 150,
+                    height: _height * 0.2,
+                    width: _width * 0.4,
                     padding: EdgeInsets.only(left: 30),
                     decoration: BoxDecoration(
                         color: Color(0xffffe6d7),
@@ -114,64 +117,70 @@ class _TransactionState extends State<Transaction> {
                   )
                 ],
               ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(50),
-                        topRight: Radius.circular(50))),
-                height: 300,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 30),
-                      child: ListTile(
-                        title: Text(
-                          "Transactions",
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
-                        ),
-                        trailing: Container(
-                          height: 30,
-                          width: 70,
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade100,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "See All",
-                                style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
+              SizedBox(
+                height: _height * 0.02,
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50))),
+                  height: _height * 0.8,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 20, right: 20, top: 30),
+                        child: ListTile(
+                          title: Text(
+                            "Transactions",
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.bold),
+                          ),
+                          trailing: Container(
+                            height: 30,
+                            width: 70,
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "See All",
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      height: 200,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: 20,
-                          right: 20,
-                        ),
-                        child: ListView.builder(
-                          itemCount: _transactions.length,
-                          itemBuilder: (context, index) {
-                            return TransactionItem(
-                              _transactions[index]['title'],
-                              _transactions[index]['subtitle'],
-                              _transactions[index]['amount'],
-                            );
-                          },
+                      Container(
+                        height: 200,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: 20,
+                            right: 20,
+                          ),
+                          child: ListView.builder(
+                            itemCount: _transactions.length,
+                            itemBuilder: (context, index) {
+                              return TransactionItem(
+                                _transactions[index]['title'],
+                                _transactions[index]['subtitle'],
+                                _transactions[index]['amount'],
+                              );
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               )
             ]),
@@ -179,6 +188,9 @@ class _TransactionState extends State<Transaction> {
             child: Icon(Icons.add),
             onPressed: () {
               showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(50))),
                   context: context,
                   builder: (context) {
                     return Container(
@@ -269,7 +281,6 @@ class _TransactionState extends State<Transaction> {
                       ),
                     );
                   });
-              //TODO:call a function that opens a form
             }));
   }
 }
