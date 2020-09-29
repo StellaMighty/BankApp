@@ -10,7 +10,7 @@ class RecomendItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Text(firstname),
+      leading: Container(child: Text(firstname)),
       title: Text(gender),
       subtitle: Text(age),
       trailing: Text(phone),

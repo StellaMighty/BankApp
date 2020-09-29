@@ -9,7 +9,7 @@ class Recommendation extends StatefulWidget {
 class _RecommendationState extends State<Recommendation> {
   final _formkey = GlobalKey<FormState>();
 
-  final List _Recc = [];
+  final List _recommendation = [];
   String firstname;
   String age;
   String gender;
@@ -73,13 +73,13 @@ class _RecommendationState extends State<Recommendation> {
                   decoration: BoxDecoration(color: Colors.lightBlue),
                   height: _height * 0.5,
                   child: ListView.builder(
-                      itemCount: _Recc.length,
+                      itemCount: _recommendation.length,
                       itemBuilder: (context, index) {
                         return RecomendItem(
-                          _Recc[index]["firstname"],
-                          _Recc[index]["gender"],
-                          _Recc[index]["age"],
-                          _Recc[index]["phone"],
+                          _recommendation[index]["firstname"],
+                          _recommendation[index]["gender"],
+                          _recommendation[index]["age"],
+                          _recommendation[index]["phone"],
                         );
                       }),
                 ),
@@ -124,43 +124,52 @@ class _RecommendationState extends State<Recommendation> {
                                   return null;
                                 }
                               },
-                            ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                  hintText: "Gender",
-                                  border: OutlineInputBorder()),
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return "Pls Input your Gender";
-                                } else {
-                                  return null;
-                                }
+                              onSaved: (value) {
+                                firstname = value;
                               },
                             ),
                             TextFormField(
-                              decoration: InputDecoration(
-                                  hintText: "Age",
-                                  border: OutlineInputBorder()),
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return "Pls Input your Age";
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
+                                decoration: InputDecoration(
+                                    hintText: "Gender",
+                                    border: OutlineInputBorder()),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return "Pls Input your Gender";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onSaved: (value) {
+                                  gender = value;
+                                }),
                             TextFormField(
-                              decoration: InputDecoration(
-                                  hintText: " phone Number",
-                                  border: OutlineInputBorder()),
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return "Pls Input your Phone Number";
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
+                                decoration: InputDecoration(
+                                    hintText: "Age",
+                                    border: OutlineInputBorder()),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return "Pls Input your Age";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onSaved: (value) {
+                                  age = value;
+                                }),
+                            TextFormField(
+                                decoration: InputDecoration(
+                                    hintText: " phone Number",
+                                    border: OutlineInputBorder()),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return "Pls Input your Phone Number";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onSaved: (value) {
+                                  phone = value;
+                                }),
                             FlatButton(
                                 color: Colors.blue,
                                 textColor: Colors.white,
@@ -174,7 +183,7 @@ class _RecommendationState extends State<Recommendation> {
                                       "age": age,
                                       "phone": phone
                                     };
-                                    _Recc.add(item);
+                                    _recommendation.add(item);
                                     _formkey.currentState.reset();
                                     return null;
                                   }
