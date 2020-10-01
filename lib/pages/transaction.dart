@@ -1,5 +1,6 @@
 import 'package:bankapp/pages/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
+import 'package:bankapp/data/transaction_data.dart';
 
 class Transaction extends StatefulWidget {
   @override
@@ -9,7 +10,14 @@ class Transaction extends StatefulWidget {
 class _TransactionState extends State<Transaction> {
   final _formKey = GlobalKey<FormState>();
 
-  final List _transactions = [];
+  var transactionList = new TransactionList();
+
+  List _transactions;
+
+  initState() {
+    _transactions = transactionList.getList();
+    super.initState();
+  }
 
   String title;
 
@@ -129,60 +137,85 @@ class _TransactionState extends State<Transaction> {
                           topLeft: Radius.circular(50),
                           topRight: Radius.circular(50))),
                   height: _height * 0.8,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 20, right: 20, top: 30),
-                        child: ListTile(
-                          title: Text(
-                            "Transactions",
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          ),
-                          trailing: Container(
-                            height: 30,
-                            width: 70,
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade100,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "See All",
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
+                  child: Column(children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20, top: 30),
+                      child: ListTile(
+                        title: Text(
+                          "Transactions",
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
+                        trailing: Container(
+                          height: 30,
+                          width: 70,
+                          decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      Container(
-                        height: 200,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: 20,
-                            right: 20,
-                          ),
-                          child: ListView.builder(
+                    ),
+                    Container(
+                      height: 200,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                        ),
+                        child: ListView.builder(
                             itemCount: _transactions.length,
                             itemBuilder: (context, index) {
-                              return TransactionItem(
-                                _transactions[index]['title'],
-                                _transactions[index]['subtitle'],
-                                _transactions[index]['amount'],
+                              return GestureDetector(
+                                onLongPress: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text('Deleting'),
+                                        content: Text('Are you sure?'),
+                                        actions: [
+                                          FlatButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _transactions.removeAt(index);
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text('Yes')),
+                                          FlatButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text('No'))
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                                child: TransactionItem(
+                                  _transactions[index]['title'],
+                                  _transactions[index]['subtitle'],
+                                  _transactions[index]['amount'],
+                                ),
                               );
-                            },
-                          ),
-                        ),
+                            }),
                       ),
-                    ],
-                  ),
+                    )
+                  ]),
                 ),
-              )
+              ),
             ]),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
@@ -269,7 +302,7 @@ class _TransactionState extends State<Transaction> {
                                       "subtitle": subtitle,
                                       "amount": amount
                                     };
-                                    _transactions.add(item);
+                                    transactionList.addTransaction(item);
                                     _formKey.currentState.reset();
                                     return null;
                                   }
