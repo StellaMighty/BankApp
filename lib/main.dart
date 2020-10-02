@@ -37,14 +37,17 @@ class _WelcomePageState extends State<WelcomePage> {
     _scaffoldKey.currentState.openEndDrawer();
   }
 
-  TransactionList transactionList = new TransactionList();
+  TransactionList transactionList;
 
   @override
   void initState() {
-    transactionList.addListener(() {
-      print('notifier');
-    });
+    listenToChanges();
     super.initState();
+  }
+
+  void listenToChanges() {
+    transactionList = new TransactionList();
+    transactionList.addListener(() {});
   }
 
   /// close drawer if open

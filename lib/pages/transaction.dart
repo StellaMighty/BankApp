@@ -11,19 +11,25 @@ class _TransactionState extends State<Transaction> {
   final _formKey = GlobalKey<FormState>();
 
   var transactionList = new TransactionList();
-
+  double totalBalance = 9000000;
   List _transactions;
 
   initState() {
     _transactions = transactionList.getList();
+    double amount = transactionList.calculateTotalAmount();
+    _updateBalance(amount);
     super.initState();
+  }
+
+  _updateBalance(double amount) {
+    totalBalance = totalBalance - amount;
   }
 
   String title;
 
   String subtitle;
 
-  String amount;
+  double amount;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +73,7 @@ class _TransactionState extends State<Transaction> {
                     SizedBox(
                       height: 10,
                     ),
-                    Text("£900,000,000",
+                    Text("\$$totalBalance",
                         style: TextStyle(color: Colors.white, fontSize: 24)),
                   ],
                 ),
@@ -200,7 +206,7 @@ class _TransactionState extends State<Transaction> {
                               child: TransactionItem(
                                 _transactions[index]['title'],
                                 _transactions[index]['subtitle'],
-                                _transactions[index]['amount'],
+                                _transactions[index]['amount'].toString(),
                               ),
                             );
                           },
@@ -277,7 +283,7 @@ class _TransactionState extends State<Transaction> {
                                   return null;
                                 },
                                 onSaved: (value) {
-                                  amount = value;
+                                  amount = double.parse(value);
                                 },
                               ),
                             ),
@@ -293,6 +299,7 @@ class _TransactionState extends State<Transaction> {
                                       "subtitle": subtitle,
                                       "amount": amount
                                     };
+                                    _updateBalance(amount);
                                     transactionList.addTransaction(item);
                                     _formKey.currentState.reset();
                                     return null;

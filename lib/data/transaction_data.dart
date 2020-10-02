@@ -24,4 +24,13 @@ class TransactionList extends ChangeNotifier {
 
 //this is a getter
   int get transactionsCount => _transcations.length;
+
+  double calculateTotalAmount() {
+    var total = 0.0;
+    _transcations.forEach((element) {
+      total = total + double.parse(element['amount']);
+    });
+    //loop ended
+    return total;
+  }
 }
